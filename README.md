@@ -1,2 +1,2 @@
 # GFG-Solution 
-Collection of LeetCode questions to ace the coding interview.
+Collection of GFG questions to ace the coding interview.
