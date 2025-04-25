@@ -24,19 +24,17 @@ public class Main {
 // } Driver Code Ends
 
 
-// User function Template for Java
-
 class Solution {
     public int getSecondLargest(int[] arr) {
-        // Code Here
-        int secLar = -1;
-        int lar  = -1;
-        for(int i=0;i< arr.length;i++){
+        // code here
+        int lar=-1,secLar=-1;
+        for(int i=0;i<arr.length;i++){
             if(arr[i]>lar){
                 secLar=lar;
                 lar=arr[i];
             }
-            else if(arr[i]>secLar && arr[i]!=lar) secLar=arr[i];
+            else if(arr[i]>secLar && arr[i]<lar)
+                secLar = arr[i];
         }
         return secLar;
     }
