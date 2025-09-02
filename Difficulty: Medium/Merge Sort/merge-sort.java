@@ -1,45 +1,32 @@
 class Solution {
 
-    void merge(int arr[],int low, int mid, int high){
-        int temp[]=new int[high-low+1];
-        int right=mid+1;
-        int left=low;
-        int i=0;
-        while(left<=mid && right<=high){
-            if(arr[left]<arr[right]) {
-                temp[i]=arr[left];
-                left++;
+static int partition(int[] arr, int low, int high) {
+        int pivot = arr[low];
+        int i = low ;
+        int j = high;
+        while (i < j) {
+            while (arr[i] <= pivot && i<high)
+                i++;
+            while (arr[j] > pivot && j>low)
+                j--;
+            if (i < j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
-            else{
-                temp[i]=arr[right];
-                right++;
-            }
-            i++;
         }
-        
-        while(left<=mid){
-            temp[i]=arr[left];
-            left++;
-            i++;
-        }
-        while(right<=high){
-            temp[i]=arr[right];
-            right++;
-            i++;
-        }
-        
-        for(int j=low;j<=high;j++){
-            arr[j]=temp[j-low];
-        }
+        arr[low] = arr[j];
+        arr[j] = pivot;
+        return j;
     }
-    
-    void mergeSort(int arr[], int l, int r) {
-        // code here
-        if(l==r) return;
-        int mid= l+(r-l)/2;
-        mergeSort(arr,l,mid);
-        mergeSort(arr,mid+1,r);
-        merge(arr,l,mid,r);
-        
+
+    static void mergeSort(int arr[], int low, int high) {
+        if (low >= high)
+            return;
+
+        int divide = partition(arr, low, high);
+        mergeSort(arr, low, divide - 1);
+        mergeSort(arr, divide + 1, high);
+
     }
 }
